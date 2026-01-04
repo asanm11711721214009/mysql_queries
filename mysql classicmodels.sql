@@ -141,6 +141,53 @@ on p.productcode=o.productcode
 group by p.productname
 order by orders desc limit 5)as a;
 
+#second smallest creditlimit
+select distinct creditlimit from customers
+order by creditlimit  limit 1,1;
+
+select min(creditlimit) from customers 
+where creditlimit>(select min(creditlimit) from customers);
+
+-- window functions
+select*from customers;
+#row_number()
+select customernumber,customername,creditlimit,country,
+	row_number() over(partition  by country order by creditlimit desc) as a
+	from customers;
+ #rank()
+ select customernumber,customername,creditlimit,country,
+	rank() over(partition  by country order by creditlimit desc) as a
+	from customers;
+ #dense_rank()
+  select customernumber,customername,creditlimit,country,
+	dense_rank() over(partition  by country order by creditlimit desc) as a
+	from customers;
+ #percent_rank()
+ select customernumber,customername,creditlimit,country,
+	percent_rank() over(partition  by country order by creditlimit desc) as a
+	from customers;
+    
+ 
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
 
     
 
