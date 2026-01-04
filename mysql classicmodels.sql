@@ -60,6 +60,36 @@ select sum(quantityordered) as otal,
 	count(quantityordered) as numberofcounts from orderdetails;
 select ceil(avg(quantityordered)) from orderdetails;
 select floor(avg(quantityordered)) from orderdetails;
+-- Date functions
+select*from orders;
+select orderdate,
+    month(orderdate),
+	monthname(orderdate),
+	year(orderdate),
+    day(orderdate),
+    dayname(orderdate)
+	from orders;
+-- difference between abs and datediff    
+select datediff(orderdate,shippeddate)from orders;  #minus values
+select abs(datediff(orderdate,shippeddate)) from orders; # minus values into positive 
+select datediff(shippeddate,orderdate) from orders; #highestt value and lowest values
+
+
+
+
+
+
+
+    
+    
+
+
+
+
+
+
+
+
 
     
     
