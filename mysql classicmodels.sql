@@ -73,6 +73,17 @@ select orderdate,
 select datediff(orderdate,shippeddate)from orders;  #minus values
 select abs(datediff(orderdate,shippeddate)) from orders; # minus values into positive 
 select datediff(shippeddate,orderdate) from orders; #highestt value and lowest values
+-- case operators
+use mydb;
+select*from emp;
+select empid,ename,dept,salary,
+case
+	when salary<12000 then '5%'
+	when salary>=12000 and salary<=15000 then '10%'
+	when salary>=38000 and salary<45000 then '15%'
+	else '20%'
+	end as bonus
+from emp;
 
 
 
