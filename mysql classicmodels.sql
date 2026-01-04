@@ -84,6 +84,69 @@ case
 	else '20%'
 	end as bonus
 from emp;
+-- group by clause
+select ename,dept,gender,sum(salary) from emp
+group by  ename, dept, gender
+order by dept;
+-- having clause
+select*from products;
+select productline,count(productcode) as total_count
+from products
+group by productline
+having total_count>25;
+-- joins
+select*from products;
+select*from orderdetails;
+#inner join
+select p.productvendor,p.productline,o.priceeach
+	from products p
+	inner join orderdetails o
+	on p.productcode=o.productcode;
+#left join
+select p.productname,p.productcode,o.quantityordered
+	from products p
+	left join orderdetails o
+	on p.productcode=o.productCode;
+#right join
+select p.productname,p.productcode,o.quantityordered
+	from products p
+	right join orderdetails o
+	on p.productcode=o.productCode;    
+-- set operations
+select*from blinkit
+union 
+select*from zomato;    
+
+select*from blinkit
+union all
+select*from zomato;
+
+select*from blinkit
+intersect
+select*from zomato;
+
+select*from blinkit
+except
+select*from zomato;
+
+-- subqueries
+#name of top 5 products based on orders
+select*from products;
+select*from orderdetails;
+select productname from
+(select p.productname,sum(o.quantityordered) as orders
+from products p
+join orderdetails o
+on p.productcode=o.productcode
+group by p.productname
+order by orders desc limit 5)as a;
+
+
+    
+
+
+
+
 
 
 
